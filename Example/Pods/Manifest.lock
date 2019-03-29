@@ -1,5 +1,5 @@
 PODS:
-  - EFColorPicker (1.2.0)
+  - EFColorPicker (1.2.1)
 
 DEPENDENCIES:
   - EFColorPicker (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  EFColorPicker: 1644dcfb833afca76f18e3dab7d6a9cd7886a359
+  EFColorPicker: f0377b1c1752720647178a8917d3e2407342cb5f
 
 PODFILE CHECKSUM: b19c718041c86ffbb550a1d4807d4f217bc85c07
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.7.0.beta.3

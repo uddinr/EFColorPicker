@@ -27,22 +27,22 @@
 import UIKit
 
 public class EFRGBView: UIView, EFColorView {
-
+    
     let EFColorSampleViewHeight: CGFloat = 30.0
     let EFViewMargin: CGFloat = 20.0
     let EFSliderViewMargin: CGFloat = 30.0
     let EFRGBColorComponentsSize: Int = 3
-
+    
     private let colorSample: UIView = UIView()
     var colorComponentViews: [EFColorComponentView] = []
     private var colorComponents: RGB = RGB(1, 1, 1, 1)
-
+    
     weak public var delegate: EFColorViewDelegate?
-
+    
     public var isTouched: Bool {
         return self.colorComponentViews.filter { $0.isTouched }.count > 0
     }
-
+    
     public var color: UIColor {
         get {
             return UIColor(
@@ -57,33 +57,33 @@ public class EFRGBView: UIView, EFColorView {
             self.reloadData()
         }
     }
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.ef_baseInit()
     }
-
+    
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.ef_baseInit()
     }
-
+    
     func reloadData() {
         colorSample.backgroundColor = self.color
         colorSample.accessibilityValue = EFHexStringFromColor(color: self.color)
         self.ef_reloadColorComponentViews(colorComponents: colorComponents)
     }
-
+    
     // MARK:- Private methods
     private func ef_baseInit() {
         self.accessibilityLabel = "rgb_view"
-
+        
         colorSample.accessibilityLabel = "color_sample"
         colorSample.layer.borderColor = UIColor.black.cgColor
         colorSample.layer.borderWidth = 0.5
         colorSample.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(colorSample)
-
+        
         var tmp: [EFColorComponentView] = []
         let titles = [
             NSLocalizedString("Red", comment: ""),
@@ -103,17 +103,17 @@ public class EFRGBView: UIView, EFColorView {
             )
             tmp.append(colorComponentView)
         }
-
+        
         colorComponentViews = tmp
         self.ef_installConstraints()
     }
-
+    
     @objc @IBAction private func ef_colorComponentDidChangeValue(_ sender: EFColorComponentView) {
         self.ef_setColorComponentValue(value: sender.value / sender.maximumValue, atIndex: UInt(sender.tag))
         self.delegate?.colorView(self, didChangeColor: self.color)
         self.reloadData()
     }
-
+    
     private func ef_setColorComponentValue(value: CGFloat, atIndex index: UInt) {
         switch index {
         case 0:
@@ -130,7 +130,7 @@ public class EFRGBView: UIView, EFColorView {
             break
         }
     }
-
+    
     private func ef_colorComponentViewWithTitle(title: String, tag: Int, maxValue: CGFloat) -> EFColorComponentView {
         let colorComponentView: EFColorComponentView = EFColorComponentView()
         colorComponentView.title = title
@@ -139,7 +139,7 @@ public class EFRGBView: UIView, EFColorView {
         colorComponentView.maximumValue = maxValue
         return colorComponentView
     }
-
+    
     private func ef_installConstraints() {
         let metrics = [
             "margin" : EFViewMargin,
@@ -149,7 +149,7 @@ public class EFRGBView: UIView, EFColorView {
         var views = [
             "colorSample" : colorSample
         ]
-
+        
         let visualFormats = [
             "H:|-margin-[colorSample]-margin-|",
             "V:|-margin-[colorSample(height)]"
@@ -164,14 +164,14 @@ public class EFRGBView: UIView, EFColorView {
                 )
             )
         }
-
+        
         var previousView: UIView = colorSample
         for colorComponentView in colorComponentViews {
             views = [
                 "previousView" : previousView,
                 "colorComponentView" : colorComponentView
             ]
-
+            
             let visualFormats = [
                 "H:|-margin-[colorComponentView]-margin-|",
                 "V:[previousView]-slider_margin-[colorComponentView]"
@@ -186,10 +186,10 @@ public class EFRGBView: UIView, EFColorView {
                     )
                 )
             }
-
+            
             previousView = colorComponentView
         }
-
+        
         views = [
             "previousView" : previousView
         ]
@@ -202,26 +202,26 @@ public class EFRGBView: UIView, EFColorView {
             )
         )
     }
-
+    
     private func ef_colorComponentsWithRGB(rgb: RGB) -> [CGFloat] {
         return [rgb.red, rgb.green, rgb.blue, rgb.alpha]
     }
-
+    
     private func ef_reloadColorComponentViews(colorComponents: RGB) {
         let components = self.ef_colorComponentsWithRGB(rgb: colorComponents)
-
+        
         for (idx, colorComponentView) in colorComponentViews.enumerated() {
             let cgColors: [CGColor] = self.ef_colorsWithColorComponents(colorComponents: components,
-                                                                             currentColorIndex: colorComponentView.tag)
+                                                                        currentColorIndex: colorComponentView.tag)
             let colors: [UIColor] = cgColors.map({ cgColor -> UIColor in
                 return UIColor(cgColor: cgColor)
             })
-
+            
             colorComponentView.setColors(colors: colors)
             colorComponentView.value = components[idx] * colorComponentView.maximumValue
         }
     }
-
+    
     private func ef_colorsWithColorComponents(colorComponents: [CGFloat], currentColorIndex colorIndex: Int) -> [CGColor] {
         let currentColorValue: CGFloat = colorComponents[colorIndex]
         var colors: [CGFloat] = [CGFloat](repeating: 0, count: 12)
@@ -233,11 +233,11 @@ public class EFRGBView: UIView, EFColorView {
         colors[colorIndex] = 0
         colors[colorIndex + 4] = currentColorValue
         colors[colorIndex + 8] = 1.0
-
+        
         let start: UIColor = UIColor(red: colors[0], green: colors[1], blue: colors[2], alpha: 1)
         let middle: UIColor = UIColor(red: colors[4], green: colors[5], blue: colors[6], alpha: 1)
         let end: UIColor = UIColor(red: colors[8], green: colors[9], blue: colors[10], alpha: 1)
-
+        
         return [start.cgColor, middle.cgColor, end.cgColor]
     }
 }

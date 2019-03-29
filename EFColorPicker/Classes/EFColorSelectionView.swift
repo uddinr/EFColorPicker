@@ -34,6 +34,9 @@ public enum EFSelectedColorView: Int {
 
     // The HSB color view type.
     case HSB = 1
+    
+    // The HEX color view type
+    case HEX = 2
 }
 
 // The EFColorSelectionView aggregates views that should be used to edit color components.
@@ -44,6 +47,7 @@ public class EFColorSelectionView: UIView, EFColorView, EFColorViewDelegate {
 
     let rgbColorView: EFRGBView = EFRGBView()
     let hsbColorView: EFHSBView = EFHSBView()
+    let hexColorView: EFHEXView = EFHEXView()
 
     weak public var delegate: EFColorViewDelegate?
 
@@ -74,12 +78,20 @@ public class EFColorSelectionView: UIView, EFColorView, EFColorViewDelegate {
             if let strongSelf = self {
                 strongSelf.rgbColorView.alpha = EFSelectedColorView.RGB == index ? 1.0 : 0.0
                 strongSelf.hsbColorView.alpha = EFSelectedColorView.HSB == index ? 1.0 : 0.0
+                strongSelf.hexColorView.alpha = EFSelectedColorView.HEX == index ? 1.0 : 0.0
             }
         }
     }
 
     func selectedView() -> EFColorView? {
-        return (EFSelectedColorView.RGB == self.selectedIndex ? self.rgbColorView : self.hsbColorView) as? EFColorView
+        switch self.selectedIndex {
+        case EFSelectedColorView.HSB:
+            return self.hsbColorView
+        case EFSelectedColorView.HEX:
+            return self.hexColorView
+        default:
+            return self.rgbColorView
+        }
     }
 
     func addColorView(view: EFColorView) {
@@ -110,6 +122,7 @@ public class EFColorSelectionView: UIView, EFColorView, EFColorViewDelegate {
     override public func updateConstraints() {
         self.rgbColorView.setNeedsUpdateConstraints()
         self.hsbColorView.setNeedsUpdateConstraints()
+        self.hexColorView.setNeedsUpdateConstraints()
         super.updateConstraints()
     }
 
@@ -129,6 +142,7 @@ public class EFColorSelectionView: UIView, EFColorView, EFColorViewDelegate {
         self.backgroundColor = UIColor.white
         self.addColorView(view: rgbColorView)
         self.addColorView(view: hsbColorView)
+        self.addColorView(view: hexColorView)
         self.setSelectedIndex(index: EFSelectedColorView.RGB, animated: false)
     }
 }

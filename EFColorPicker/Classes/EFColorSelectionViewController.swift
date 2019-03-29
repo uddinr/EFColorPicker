@@ -77,7 +77,7 @@ public class EFColorSelectionViewController: UIViewController, EFColorViewDelega
         super.viewDidLoad()
 
         let segmentControl: UISegmentedControl = UISegmentedControl(
-            items: [NSLocalizedString("RGB", comment: ""), NSLocalizedString("HSB", comment: "")]
+            items: [NSLocalizedString("RGB", comment: ""), NSLocalizedString("HSB", comment: ""), NSLocalizedString("HEX", comment: "")]
         )
         segmentControl.addTarget(
             self,

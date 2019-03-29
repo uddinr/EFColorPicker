@@ -233,11 +233,22 @@ func EFColorFromHexString(hexColor: String) -> UIColor? {
         return nil
     }
 
-    let r: CGFloat = CGFloat((hexNum >> 24) & 0xFF)
-    let g: CGFloat = CGFloat((hexNum >> 16) & 0xFF)
-    let b: CGFloat = CGFloat((hexNum >> 8) & 0xFF)
-    let a: CGFloat = CGFloat((hexNum) & 0xFF)
-
+    var r: CGFloat = EFRGBColorComponentMaxValue
+    var g: CGFloat = EFRGBColorComponentMaxValue
+    var b: CGFloat = EFRGBColorComponentMaxValue
+    var a: CGFloat = EFRGBColorComponentMaxValue
+    
+    if(hexColor.count == 9){
+        r = CGFloat((hexNum >> 24) & 0xFF)
+        g = CGFloat((hexNum >> 16) & 0xFF)
+        b = CGFloat((hexNum >> 8) & 0xFF)
+        a = CGFloat((hexNum) & 0xFF)
+    }else{
+        r = CGFloat((hexNum >> 16) & 0xFF)
+        g = CGFloat((hexNum >> 8) & 0xFF)
+        b = CGFloat((hexNum) & 0xFF)
+    }
+    
     return UIColor(
         red: r / EFRGBColorComponentMaxValue,
         green: g / EFRGBColorComponentMaxValue,
