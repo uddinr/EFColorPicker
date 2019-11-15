@@ -56,10 +56,10 @@ Then build and run `EFColorPicker.xcworkspace` in Xcode, the demo shows how to u
 
 ## Requirements
 
-- iOS 8.0+
-- Xcode 10.1+
-- Swift 4.2+
-- CocoaPods 1.6.0.beta.2+
+| Version | Needs                                                     |
+|:-------|:-----------------------------------------------|
+| <5.0  | Xcode 10.0+<br>Swift 4.2+<br>iOS 8.0+ |
+| 5.x    | Xcode 10.2+<br>Swift 5.0+<br>iOS 8.0+ |
 
 ## Installation
 
@@ -95,6 +95,7 @@ navCtrl.preferredContentSize = colorSelectionController.view.systemLayoutSizeFit
 
 colorSelectionController.delegate = self
 colorSelectionController.color = self.view.backgroundColor ?? UIColor.white
+colorSelectionController.setMode(mode: EFColorSelectionMode.all)
 
 if UIUserInterfaceSizeClass.compact == self.traitCollection.horizontalSizeClass {
     let doneBtn: UIBarButtonItem = UIBarButtonItem(
@@ -156,9 +157,27 @@ func colorViewController(colorViewCntroller: EFColorSelectionViewController, did
 }
 ```
 
-## PS
+## Apps using EFColorPicker
 
-The first version of [EFColorPicker](https://github.com/EFPrefix/EFColorPicker/releases/tag/0.0.1) is converted from [MSColorPicker](https://github.com/sgl0v/MSColorPicker/commit/b15f6cfabf4e406368f730f3f66f823bf1593293), thanks for [sgl0v](https://github.com/sgl0v)'s work!
+<table>
+    <tr>
+        <td>
+            <a href='https://www.appsight.io/app/conduit-bending-assistant-pro' title='Conduit Bending Assistant PRO'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/373/829/media/small.png?1555108249'>
+            </a>
+        </td>
+        <td>
+            <a href='https://www.appsight.io/app/m%C3%AA-%C4%91%E1%BB%8Dc-truy%E1%BB%87n-b%E1%BA%A3n-ti%E1%BB%83u-thuy%E1%BA%BFt' title='Mê Đọc Truyện-Bản Tiểu Thuyết'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/340/196/media/small.png?1551382455'>
+            </a>
+        </td>
+        <td>
+            <a href='https://www.appsight.io/app/m%C3%AA-%C4%91%E1%BB%8Dc-truy%E1%BB%87n' title='Mê đọc truyện - Manga online'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/379/101/media/small.png?1555620553'>
+            </a>
+        </td>
+    </tr>
+</table>
 
 ## Author
 

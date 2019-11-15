@@ -27,7 +27,7 @@
     </a>
     <img src="https://img.shields.io/badge/made%20with-%3C3-orange.svg">
     <a href="http://shang.qq.com/wpa/qunwpa?idkey=d0f732585dcb0c6f2eb26bc9e0327f6305d18260eeba89ed26a201b520c572c0">
-        <img src="https://img.shields.io/badge/QQ群-769966374-32befc.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAMAAAARSr4IAAAA4VBMVEUAAAAAAAAAAAD3rwgAAAAAAADpICBuTQNUDAwAAAAAAAAAAAAAAADnICAAAAAAAACbFRUAAAD5rgkfFgEAAADHGxu1GBhGOyQ6LhMPCgAAAAB0UQRbDAziHh7hHh5HRUEAAAAPAgIQCwEQEBAdBAQgICAvIQIvLy8+LAJAQEBJCgpWRBpbW1tfX19gYGBqZVptTARvb299VwSAgICEhISHh4ePhnGbbAWgoKCseAawsLC7gwbAwMDExMTFrKzLjgfoHx/powfqpAjvZGTw8PDxcnLxenrzj4/5rgj5x8f///9y6ONcAAAAIHRSTlMAECAgMEBQVlhggZGhobHBwdHR3eHh4+fp7/Hx9/f5+3tefS0AAACkSURBVHjaNc1FAsJAEAXRDj64BAv2IbgEd2s0gfsfiJkAtXurIpkWMQBd0K8O3KZfhWEeW9YB8LnUYY2Gi6WJqJIHwKo7GAMpRT/aV0d2BhRD/Xp7tt9OGs2yYoy5mpUxc0BOc/yvkiQSwJPZtu3XCdAoDtjMb5k8C9KN1utx+zFChsD97bYzRII0Ss2/7IUliILFjZKV8ZLM61xK+V6tsHbSRB+BYB6Vhuib7wAAAABJRU5ErkJggg==">
+        <img src="https://img.shields.io/badge/Q群-769966374-32befc.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAMAAAARSr4IAAAA4VBMVEUAAAAAAAAAAAD3rwgAAAAAAADpICBuTQNUDAwAAAAAAAAAAAAAAADnICAAAAAAAACbFRUAAAD5rgkfFgEAAADHGxu1GBhGOyQ6LhMPCgAAAAB0UQRbDAziHh7hHh5HRUEAAAAPAgIQCwEQEBAdBAQgICAvIQIvLy8+LAJAQEBJCgpWRBpbW1tfX19gYGBqZVptTARvb299VwSAgICEhISHh4ePhnGbbAWgoKCseAawsLC7gwbAwMDExMTFrKzLjgfoHx/powfqpAjvZGTw8PDxcnLxenrzj4/5rgj5x8f///9y6ONcAAAAIHRSTlMAECAgMEBQVlhggZGhobHBwdHR3eHh4+fp7/Hx9/f5+3tefS0AAACkSURBVHjaNc1FAsJAEAXRDj64BAv2IbgEd2s0gfsfiJkAtXurIpkWMQBd0K8O3KZfhWEeW9YB8LnUYY2Gi6WJqJIHwKo7GAMpRT/aV0d2BhRD/Xp7tt9OGs2yYoy5mpUxc0BOc/yvkiQSwJPZtu3XCdAoDtjMb5k8C9KN1utx+zFChsD97bYzRII0Ss2/7IUliILFjZKV8ZLM61xK+V6tsHbSRB+BYB6Vhuib7wAAAABJRU5ErkJggg==">
     </a>
 </p>
 
@@ -65,10 +65,10 @@ git clone git@github.com:EFPrefix/EFColorPicker.git; cd EFColorPicker/Example; p
 
 ## 环境
 
-- iOS 8.0+
-- Xcode 10.1+
-- Swift 4.2+
-- CocoaPods 1.6.0.beta.2+
+| 版本  | 需求                                                            |
+|:-------|:-----------------------------------------------|
+| <5.0  | Xcode 10.0+<br>Swift 4.2+<br>iOS 8.0+ |
+| 5.x    | Xcode 10.2+<br>Swift 5.0+<br>iOS 8.0+ |
 
 ## 安装
 
@@ -103,6 +103,7 @@ navCtrl.preferredContentSize = colorSelectionController.view.systemLayoutSizeFit
 
 colorSelectionController.delegate = self
 colorSelectionController.color = self.view.backgroundColor ?? UIColor.white
+colorSelectionController.setMode(mode: EFColorSelectionMode.all)
 
 if UIUserInterfaceSizeClass.compact == self.traitCollection.horizontalSizeClass {
     let doneBtn: UIBarButtonItem = UIBarButtonItem(
@@ -164,9 +165,27 @@ func colorViewController(colorViewCntroller: EFColorSelectionViewController, did
 }
 ```
 
-## 备注
+## 使用 EFColorPicker 的应用
 
-[EFColorPicker](https://github.com/EFPrefix/EFColorPicker/releases/tag/0.0.1) 的第一个版本从 [MSColorPicker](https://github.com/sgl0v/MSColorPicker/commit/b15f6cfabf4e406368f730f3f66f823bf1593293) 转换而来，在此对 MSColorPicker 的作者 [sgl0v](https://github.com/sgl0v) 表示感谢！
+<table>
+    <tr>
+        <td>
+            <a href='https://www.appsight.io/app/conduit-bending-assistant-pro' title='Conduit Bending Assistant PRO'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/373/829/media/small.png?1555108249'>
+            </a>
+        </td>
+        <td>
+            <a href='https://www.appsight.io/app/m%C3%AA-%C4%91%E1%BB%8Dc-truy%E1%BB%87n-b%E1%BA%A3n-ti%E1%BB%83u-thuy%E1%BA%BFt' title='Mê Đọc Truyện-Bản Tiểu Thuyết'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/340/196/media/small.png?1551382455'>
+            </a>
+        </td>
+        <td>
+            <a href='https://www.appsight.io/app/m%C3%AA-%C4%91%E1%BB%8Dc-truy%E1%BB%87n' title='Mê đọc truyện - Manga online'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/379/101/media/small.png?1555620553'>
+            </a>
+        </td>
+    </tr>
+</table>
 
 ## 作者
 
